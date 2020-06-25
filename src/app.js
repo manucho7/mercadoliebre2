@@ -5,24 +5,21 @@ const express = require('express');
 const logger = require('morgan');
 const path = require('path');
 
-// ************ express() - (don't touch) ************
+// ************ express() ************
 const app = express();
 
-// ************ Middlewares - (don't touch) ************
+// ************ Middlewares ************
 app.use(express.static(path.join(__dirname, '../public')));  // Necesario para los archivos estáticos en el folder /public
 app.use(express.urlencoded({ extended: false }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
 
-// ************ Template Engine - (don't touch) ************
+// ************ Template Engine ************
 app.set('view engine', 'ejs');
 app.set('views', './src/views'); // Define la ruta de la carpeta "views"
 
 
-
-// ************ WRITE YOUR CODE FROM HERE ************
-// ************ Route System require and use() ************
 const mainRouter = require('./routes/main');
 app.use('/', mainRouter);
 
@@ -44,5 +41,5 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-// ************ exports app - dont'touch ************
+// ************ exports app ************
 module.exports = app;
